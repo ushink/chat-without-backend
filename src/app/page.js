@@ -1,12 +1,13 @@
+import Chat from "../components/chat";
+import Footer from "../components/footer";
 import Header from "../components/header";
 
-export default function Home({ children }) {
+export default function Home() {
   return (
-    <>
+    <div className="chat">
       <Header />
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        {children}
-      </main>
-    </>
+      <Chat />
+      <Footer />
+    </div>
   );
 }
