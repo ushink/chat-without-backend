@@ -3,7 +3,7 @@ import "../styles/header.css";
 
 export default function Header() {
   return (
-    <header>
+    <div className="header">
       <Image
         src="/avatar-group.svg"
         width={84}
@@ -19,6 +19,6 @@ export default function Header() {
         <span className="dot"></span>
         <span className="dot"></span>
       </div>
-    </header>
+    </div>
   );
 }

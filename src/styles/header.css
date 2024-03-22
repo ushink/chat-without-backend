@@ -1,4 +1,4 @@
-header {
+.header {
   width: 100%;
   max-width: 656px;
   height: 68px;
@@ -7,6 +7,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .title {
