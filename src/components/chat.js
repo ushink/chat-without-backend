@@ -8,6 +8,7 @@ export default function Chat() {
   const chatNewDate = dayjs().format("MM/DD/YYYY");
 
   const messages = useStore((state) => state.messages);
+  const removeMessage = useStore((state) => state.removeMessage);
 
   return (
     <div className="chat__content">
@@ -60,7 +61,12 @@ export default function Chat() {
                 <button className="user-message__buttons_update">
                   &#128394;
                 </button>
-                <button className="user-message__buttons_delete">
+                <button
+                  className="user-message__buttons_delete"
+                  onClick={() => {
+                    removeMessage(message.id);
+                  }}
+                >
                   &#129530;
                 </button>
               </div>
