@@ -1,5 +1,6 @@
 import { persist } from "zustand/middleware";
 import { create } from "zustand";
+import dayjs from "dayjs";
 
 const useStore = create(
   persist(
@@ -12,7 +13,7 @@ const useStore = create(
           id: Math.random(),
           sender,
           text,
-          time,
+          time: dayjs().format("HH:mm A"),
         };
 
         set({
@@ -22,7 +23,7 @@ const useStore = create(
 
       removeMessage: (id) => {
         const { messages } = get();
-        
+
         set({
           messages: messages.filter((message) => message.id !== id),
         });

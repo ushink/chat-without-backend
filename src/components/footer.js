@@ -1,7 +1,6 @@
 "use client";
 import "../styles/footer.css";
 import { useState } from "react";
-import dayjs from "dayjs";
 import useStore from "../store";
 
 export default function Footer() {
@@ -14,7 +13,6 @@ export default function Footer() {
       const message = {
         text: input,
         sender: "user",
-        time: dayjs().format("HH:mm"),
       };
 
       createMessage(message);
@@ -22,7 +20,6 @@ export default function Footer() {
       const botMessage = {
         text: "Hello World!",
         sender: "bot",
-        time: dayjs().format("HH:mm"),
       };
 
       createMessage(botMessage);
