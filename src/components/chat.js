@@ -1,20 +1,40 @@
+"use client";
 import Image from "next/image";
 import "../styles/chat.css";
 import dayjs from "dayjs";
-
-let messages = [
-  { sender: "user", text: "Hi team 👋", time: "11:31 AM" },
-  { sender: "user", text: "Anyone on for lunch today", time: "11:31 AM" },
-  { sender: "bot", text: "I’m down! Any ideas??", time: "11:35 AM" },
-];
+import useStore from "../store";
+import { useEffect, useState } from "react";
 
 export default function Chat() {
+  const [dialog, setDialog] = useState([]);
+
   const chatNewDate = dayjs().format("MM/DD/YYYY");
+
+  const messages = useStore((state) => state.messages);
+
+  // Сохранение данных в localStorage при изменении состояния
+  useEffect(() => {
+    if (messages.length > 1) {
+      localStorage.setItem("messages", JSON.stringify(dialog.concat(messages)));
+    }
+  }, [messages, dialog]);
+
+  //  Загрузка данных из localStorage при монтировании компонента
+  useEffect(() => {
+    const savedDialog = JSON.parse(localStorage.getItem("messages"));
+    if (savedDialog) {
+      setDialog(savedDialog);
+    }
+  }, []);
+
+  console.log(messages);
+  console.log("dialog", dialog);
+  console.log(JSON.parse(localStorage.getItem("messages")));
 
   return (
     <div className="chat__content">
       <div className="chat__content-date">{chatNewDate}</div>
-      {messages?.map((message, index) => (
+      {dialog?.map((message, index) => (
         <div
           key={index}
           className={message.sender === "user" ? "user-message" : "bot-message"}
