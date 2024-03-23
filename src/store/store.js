@@ -29,8 +29,19 @@ const useStore = create(
         });
       },
 
+      updateMessage: (id, text) => {
+        const { messages } = get();
+
+        set({
+          messages: messages.map((message) => ({
+            ...message,
+            text: message.id === id ? text : message.text,
+          })),
+        });
+      },
+
       deleteEverything: () => {
-        set({}, true);
+        set({ messages: [] });
       },
     }),
     {
