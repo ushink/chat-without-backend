@@ -1,7 +1,7 @@
 "use client";
-import "../styles/footer.css";
+import "./footer.css";
 import { useEffect, useState } from "react";
-import useStore from "../store";
+import useStore from "../../store/store";
 import {
   PaperClipOutlined,
   SendOutlined,

@@ -35,7 +35,7 @@ input {
 
 .footer__button-send_disable {
   color: #8e8e93;
-  cursor:default;
+  cursor: default;
 }
 
 .footer__button-send,

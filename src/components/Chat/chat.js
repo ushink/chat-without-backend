@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
-import "../styles/chat.css";
+import "./chat.css";
 import dayjs from "dayjs";
-import useStore from "../store";
+import useStore from "../../store/store";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 export default function Chat() {
@@ -14,7 +14,7 @@ export default function Chat() {
   return (
     <div className="chat__content">
       <div className="chat__content-date">{chatNewDate}</div>
-      {messages?.map((message, index) => (
+      {messages?.map((message) => (
         <div
           key={Math.random()}
           className={message.sender === "user" ? "user-message" : "bot-message"}
@@ -61,7 +61,7 @@ export default function Chat() {
             {message.sender === "user" && (
               <div className="user-message__buttons">
                 <button className="user-message__buttons_update">
-                  <EditOutlined/>
+                  <EditOutlined />
                 </button>
                 <button
                   className="user-message__buttons_delete"
