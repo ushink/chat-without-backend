@@ -28,6 +28,10 @@ const useStore = create(
           messages: messages.filter((message) => message.id !== id),
         });
       },
+
+      deleteEverything: () => {
+        set({}, true);
+      },
     }),
     {
       name: "messages",

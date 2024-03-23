@@ -5,14 +5,14 @@ import dayjs from "dayjs";
 import useStore from "../../store/store";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
-export default function Chat() {
+export default function Chat({ setIsOpenList }) {
   const chatNewDate = dayjs().format("MM/DD/YYYY");
 
   const messages = useStore((state) => state.messages);
   const removeMessage = useStore((state) => state.removeMessage);
 
   return (
-    <div className="chat__content">
+    <div className="chat__content" onClick={() => setIsOpenList(false)}>
       <div className="chat__content-date">{chatNewDate}</div>
       {messages?.map((message) => (
         <div
