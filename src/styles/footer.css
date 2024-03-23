@@ -33,7 +33,13 @@ input {
   margin-right: 16px;
 }
 
-.footer__button-send:hover,
+.footer__button-send_disable {
+  color: #8e8e93;
+  cursor:default;
+}
+
+.footer__button-send,
 .footer__button-upload:hover {
   color: #007aff;
+  cursor: pointer;
 }

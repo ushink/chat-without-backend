@@ -1,6 +1,6 @@
 "use client";
 import "../styles/footer.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useStore from "../store";
 import {
   PaperClipOutlined,
@@ -10,6 +10,7 @@ import {
 
 export default function Footer() {
   const [input, setInput] = useState("");
+  const [isActiveButton, setIsActiveButton] = useState(false);
 
   const createMessage = useStore((state) => state.createMessage);
 
@@ -19,14 +20,12 @@ export default function Footer() {
         text: input,
         sender: "user",
       };
-
       createMessage(message);
 
       const botMessage = {
         text: "Hello World!",
         sender: "bot",
       };
-
       createMessage(botMessage);
 
       setInput("");
@@ -37,6 +36,14 @@ export default function Footer() {
     e.preventDefault();
     handleSend();
   };
+
+  useEffect(() => {
+    if (input.trim()) {
+      setIsActiveButton(true);
+    } else {
+      setIsActiveButton(false);
+    }
+  }, [input]);
 
   return (
     <form className="footer" onSubmit={handleSubmit}>
@@ -56,7 +63,12 @@ export default function Footer() {
           <PaperClipOutlined />
         </button>
         <button
-          className="footer__button-send"
+          className={
+            isActiveButton
+              ? "footer__button-send"
+              : "footer__button-send_disable"
+          }
+          disabled={!isActiveButton}
           type="submit"
           onClick={handleSend}
         >
