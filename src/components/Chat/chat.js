@@ -3,20 +3,25 @@ import Image from "next/image";
 import "./chat.css";
 import dayjs from "dayjs";
 import useStore from "../../store/store";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import ButtonMessage from "../ButtonMessage/buttonMessage";
+import BubbleMessage from "../BubbleMessage/bubbleMessage";
+import { useState } from "react";
 
 export default function Chat({ setIsOpenList }) {
   const chatNewDate = dayjs().format("MM/DD/YYYY");
 
   const messages = useStore((state) => state.messages);
-  const removeMessage = useStore((state) => state.removeMessage);
+
+  const [isEditMode, setIsEditMode] = useState(false);
 
   return (
     <div className="chat__content" onClick={() => setIsOpenList(false)}>
       <div className="chat__content-date">{chatNewDate}</div>
+      {!messages.length && <p>There is no messages...</p>}
+
       {messages?.map((message) => (
         <div
-          key={Math.random()}
+          key={message.id}
           className={message.sender === "user" ? "user-message" : "bot-message"}
         >
           {message.sender === "bot" && (
@@ -28,52 +33,24 @@ export default function Chat({ setIsOpenList }) {
               className="bot-avatar"
             />
           )}
-          <div className="user-message__wrapper">
-            <div
-              className={
-                message.sender === "user"
-                  ? "chat__message"
-                  : "chat__message-bot"
-              }
-            >
-              <div className="chat__message-content">
-                {message.sender === "bot" && (
-                  <div className="name">
-                    Janet <span className="role">Bot</span>
-                  </div>
-                )}
-                <div className="chat__message-text">{message.text}</div>
-              </div>
-              <div className="chat__message-time">
-                {message.time}{" "}
-                {message.sender === "user" && (
-                  <span>
-                    <Image
-                      src="/read-receipt.svg"
-                      width={16}
-                      height={8}
-                      alt="receipt"
-                    />
-                  </span>
-                )}
-              </div>
-            </div>
+          <label className="user-message__wrapper">
+            <BubbleMessage
+              isEditMode={isEditMode}
+              setIsEditMode={setIsEditMode}
+              id={message.id}
+              sender={message.sender}
+              text={message.text}
+              time={message.time}
+            />
             {message.sender === "user" && (
-              <div className="user-message__buttons">
-                <button className="user-message__buttons_update">
-                  <EditOutlined />
-                </button>
-                <button
-                  className="user-message__buttons_delete"
-                  onClick={() => {
-                    removeMessage(message.id);
-                  }}
-                >
-                  <DeleteOutlined />
-                </button>
-              </div>
+              <ButtonMessage
+                isEditMode={isEditMode}
+                setIsEditMode={setIsEditMode}
+                id={message.id}
+                value={message.text}
+              />
             )}
-          </div>
+          </label>
         </div>
       ))}
     </div>
