@@ -2,6 +2,11 @@
 import "../styles/footer.css";
 import { useState } from "react";
 import useStore from "../store";
+import {
+  PaperClipOutlined,
+  SendOutlined,
+  SmileOutlined,
+} from "@ant-design/icons";
 
 export default function Footer() {
   const [input, setInput] = useState("");
@@ -36,7 +41,9 @@ export default function Footer() {
   return (
     <form className="footer" onSubmit={handleSubmit}>
       <div className="footer__input">
-        <button className="footer__input-emoji">&#128578;</button>
+        <button className="footer__input-emoji">
+          <SmileOutlined />
+        </button>
         <input
           type="text"
           value={input}
@@ -45,13 +52,15 @@ export default function Footer() {
         />
       </div>
       <div className="footer__button">
-        <button className="footer__button-upload">@</button>
+        <button className="footer__button-upload">
+          <PaperClipOutlined />
+        </button>
         <button
           className="footer__button-send"
           type="submit"
           onClick={handleSend}
         >
-          &#9992;
+          <SendOutlined />
         </button>
       </div>
     </form>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import "../styles/chat.css";
 import dayjs from "dayjs";
 import useStore from "../store";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 export default function Chat() {
   const chatNewDate = dayjs().format("MM/DD/YYYY");
@@ -24,6 +25,7 @@ export default function Chat() {
               width={32}
               height={32}
               alt="Avatar bot"
+              className="bot-avatar"
             />
           )}
           <div className="user-message__wrapper">
@@ -50,7 +52,7 @@ export default function Chat() {
                       src="/read-receipt.svg"
                       width={16}
                       height={8}
-                      alt="Avatar bot"
+                      alt="receipt"
                     />
                   </span>
                 )}
@@ -59,7 +61,7 @@ export default function Chat() {
             {message.sender === "user" && (
               <div className="user-message__buttons">
                 <button className="user-message__buttons_update">
-                  &#128394;
+                  <EditOutlined/>
                 </button>
                 <button
                   className="user-message__buttons_delete"
@@ -67,7 +69,7 @@ export default function Chat() {
                     removeMessage(message.id);
                   }}
                 >
-                  &#129530;
+                  <DeleteOutlined />
                 </button>
               </div>
             )}
