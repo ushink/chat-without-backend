@@ -14,12 +14,12 @@
   position: relative;
 }
 
-.footer__input {
+.footer__input-box {
   width: 90%;
   display: flex;
 }
 
-input {
+.footer__input {
   color: #3d3d3d;
   font-size: 14px;
   font-weight: 400;

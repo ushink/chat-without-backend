@@ -47,11 +47,12 @@ export default function Footer() {
 
   return (
     <form className="footer" onSubmit={handleSubmit}>
-      <div className="footer__input">
+      <div className="footer__input-box">
         <button className="footer__input-emoji">
           <SmileOutlined />
         </button>
         <input
+          className="footer__input"
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
