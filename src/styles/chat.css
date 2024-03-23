@@ -1,11 +1,14 @@
 .chat__content {
   width: 100%;
+  height: 100%;
   max-width: 656px;
-  /* height: 100vh; */
+  min-height: 400px;
+  max-height: 600px;
   padding: 0 24px;
   background-color: #ffffff;
   margin: 0 auto;
-  overflow: hidden;
+  position: relative;
+  overflow-y: auto;
 }
 
 .chat__content-date {
@@ -35,6 +38,10 @@
   align-items: flex-start;
 }
 
+.bot-avatar {
+  margin: 0 10px;
+}
+
 .chat__message,
 .chat__message-bot {
   max-width: max-content;
@@ -45,12 +52,20 @@
   align-items: end;
 }
 
-/* .chat__message::after {
-  content: url("/public/user-bubble-left.svg");
-} */
+.chat__message:first-child::after {
+  content: url("/user-bubble-left.svg");
+  position: relative;
+  left: 15px;
+}
 
 .chat__message-bot {
   background-color: #f2f2f7;
+}
+
+.chat__message-bot:first-child::before {
+  content: url("/bot-bubble-left.svg");
+  position: relative;
+  right: 15px;
 }
 
 .chat__message-content {
@@ -90,14 +105,14 @@
 
 .user-message__buttons {
   margin-top: 4px;
+  color: black;
 }
 
 .user-message__buttons_update {
-  margin-right: 6px;
-  background-color: #666668;
+  margin-right: 8px;
 }
 
 .user-message__buttons_update:hover,
 .user-message__buttons_delete:hover {
-  background-color: #5757a5ad;
+  color: #007aff;
 }
