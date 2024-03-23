@@ -30,6 +30,8 @@
 
 .chat__message-input {
   background-color: transparent;
+  padding: 4px;
+  box-shadow: 0 4px 0 -3px #ffffff;
 }
 
 .chat__message-text {

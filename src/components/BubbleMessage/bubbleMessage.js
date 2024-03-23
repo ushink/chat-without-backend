@@ -51,17 +51,11 @@ export default function BubbleMessage({
           <div className="chat__message-text">{text}</div>
         )}
       </div>
+
       <div className="chat__message-time">
         {time}
         {sender === "user" && (
-          <span>
-            <Image
-              src="/read-receipt.svg"
-              width={16}
-              height={8}
-              alt="receipt"
-            />
-          </span>
+          <Image src="/read-receipt.svg" width={16} height={8} alt="receipt" />
         )}
       </div>
     </div>

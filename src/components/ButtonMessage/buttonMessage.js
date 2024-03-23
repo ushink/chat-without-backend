@@ -14,17 +14,12 @@ export default function ButtonMessage({
   return (
     <div className="user-message__buttons">
       {isEditMode ? (
-        <button
-          className="user-message__buttons_save"
-          onClick={() => {
-            updateMessage(id, value);
-            setIsEditMode(false);
-          }}
-        >
+        <button aria-label="Save" className="user-message__buttons_save">
           <CheckOutlined />
         </button>
       ) : (
         <button
+          aria-label="Update"
           className="user-message__buttons_update"
           onClick={() => {
             setIsEditMode(true);
@@ -35,6 +30,7 @@ export default function ButtonMessage({
       )}
 
       <button
+        aria-label="Delete"
         className="user-message__buttons_delete"
         onClick={() => {
           removeMessage(id);
