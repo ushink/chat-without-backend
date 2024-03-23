@@ -7,7 +7,7 @@ const useStore = create(
     (set, get) => ({
       messages: [],
 
-      createMessage: ({ sender, text, time }) => {
+      createMessage: ({ sender, text }) => {
         const { messages } = get();
         const newMessage = {
           id: Math.random(),
@@ -17,7 +17,7 @@ const useStore = create(
         };
 
         set({
-          messages: [newMessage].concat(messages),
+          messages: [...messages, newMessage],
         });
       },
 
