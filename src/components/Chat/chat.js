@@ -33,24 +33,36 @@ export default function Chat({ setIsOpenList }) {
               className="bot-avatar"
             />
           )}
-          <label className="user-message__wrapper">
-            <BubbleMessage
-              isEditMode={isEditMode}
-              setIsEditMode={setIsEditMode}
-              id={message.id}
-              sender={message.sender}
-              text={message.text}
-              time={message.time}
+
+          {message.type ? (
+            <Image
+              src={message?.src}
+              width={100}
+              height={100}
+              alt="uplo"
+              className="bot-avatar"
             />
-            {message.sender === "user" && (
-              <ButtonMessage
+          ) : (
+            <label className="user-message__wrapper">
+              <BubbleMessage
                 isEditMode={isEditMode}
                 setIsEditMode={setIsEditMode}
                 id={message.id}
-                value={message.text}
+                sender={message.sender}
+                text={message.text}
+                time={message.time}
+                src={message.content}
               />
-            )}
-          </label>
+              {message.sender === "user" && (
+                <ButtonMessage
+                  isEditMode={isEditMode}
+                  setIsEditMode={setIsEditMode}
+                  id={message.id}
+                  value={message.text}
+                />
+              )}
+            </label>
+          )}
         </div>
       ))}
     </div>

@@ -1,6 +1,6 @@
 "use client";
 import "./footer.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useStore from "../../store/store";
 import {
   PaperClipOutlined,
@@ -11,6 +11,8 @@ import {
 export default function Footer() {
   const [input, setInput] = useState("");
   const [isActiveButton, setIsActiveButton] = useState(false);
+
+  const fileImage = useRef(null);
 
   const createMessage = useStore((state) => state.createMessage);
 
@@ -37,6 +39,34 @@ export default function Footer() {
     handleSend();
   };
 
+  const handleImageChange = (e) => {
+    e.preventDefault();
+
+    const file = fileImage.current.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        createMessage({
+          sender: "user",
+          type: "image",
+          src: reader.result,
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+
+    setTimeout(() => {
+      createMessage({
+        text: "Hello World!",
+        sender: "bot",
+      });
+    }, 500);
+  };
+
+  const handleUpload = () => {
+    fileImage.current.click();
+  };
+
   useEffect(() => {
     if (input.trim()) {
       setIsActiveButton(true);
@@ -60,9 +90,18 @@ export default function Footer() {
         />
       </div>
       <div className="footer__button">
-        <button className="footer__button-upload">
+        <input
+          id="imgAds"
+          type="file"
+          hidden
+          accept="image/*,.png,.jpg,.gif,.web,"
+          ref={fileImage}
+          onChange={handleImageChange}
+        />
+        <button className="footer__button-upload" onClick={handleUpload}>
           <PaperClipOutlined />
         </button>
+        
         <button
           className={
             isActiveButton

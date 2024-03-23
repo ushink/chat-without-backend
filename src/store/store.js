@@ -7,13 +7,15 @@ const useStore = create(
     (set, get) => ({
       messages: [],
 
-      createMessage: ({ sender, text }) => {
+      createMessage: ({ sender, text, type, src }) => {
         const { messages } = get();
         const newMessage = {
           id: Math.random(),
           sender,
           text,
           time: dayjs().format("HH:mm A"),
+          type,
+          src,
         };
 
         set({
