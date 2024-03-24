@@ -6,6 +6,7 @@ import useStore from "../../store/store";
 import ButtonMessage from "../ButtonMessage/buttonMessage";
 import BubbleMessage from "../BubbleMessage/bubbleMessage";
 import { useState } from "react";
+import ScrollableFeed from "react-scrollable-feed";
 
 export default function Chat({ setIsOpenList }) {
   const chatNewDate = dayjs().format("MM/DD/YYYY");
@@ -19,52 +20,56 @@ export default function Chat({ setIsOpenList }) {
       <div className="chat__content-date">{chatNewDate}</div>
       {!messages.length && <p>There is no messages...</p>}
 
-      {messages?.map((message) => (
-        <div
-          key={message.id}
-          className={message.sender === "user" ? "user-message" : "bot-message"}
-        >
-          {message.sender === "bot" && (
-            <Image
-              src="/avatar-bot.svg"
-              width={32}
-              height={32}
-              alt="Avatar bot"
-              className="bot-avatar"
-            />
-          )}
-
-          {message.type ? (
-            <Image
-              src={message?.src}
-              width={100}
-              height={100}
-              alt="uplo"
-              className="bot-avatar"
-            />
-          ) : (
-            <label className="user-message__wrapper">
-              <BubbleMessage
-                isEditMode={isEditMode}
-                setIsEditMode={setIsEditMode}
-                id={message.id}
-                sender={message.sender}
-                text={message.text}
-                time={message.time}
-                src={message.content}
+      <ScrollableFeed>
+        {messages?.map((message) => (
+          <div
+            key={message.id}
+            className={
+              message.sender === "user" ? "user-message" : "bot-message"
+            }
+          >
+            {message.sender === "bot" && (
+              <Image
+                src="/avatar-bot.svg"
+                width={32}
+                height={32}
+                alt="Avatar bot"
+                className="bot-avatar"
               />
-              {message.sender === "user" && (
-                <ButtonMessage
+            )}
+
+            {message.type ? (
+              <Image
+                src={message?.src}
+                width={100}
+                height={100}
+                alt="uplo"
+                className="bot-avatar"
+              />
+            ) : (
+              <label className="user-message__wrapper">
+                <BubbleMessage
                   isEditMode={isEditMode}
                   setIsEditMode={setIsEditMode}
                   id={message.id}
-                  value={message.text}
+                  sender={message.sender}
+                  text={message.text}
+                  time={message.time}
+                  src={message.content}
                 />
-              )}
-            </label>
-          )}
-        </div>
-      ))}
+                {message.sender === "user" && (
+                  <ButtonMessage
+                    isEditMode={isEditMode}
+                    setIsEditMode={setIsEditMode}
+                    id={message.id}
+                    value={message.text}
+                  />
+                )}
+              </label>
+            )}
+          </div>
+        ))}
+      </ScrollableFeed>
     </div>
   );
 }
