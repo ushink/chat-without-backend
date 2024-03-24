@@ -3,10 +3,10 @@ import Image from "next/image";
 import "./chat.css";
 import dayjs from "dayjs";
 import useStore from "../../store/store";
-import ButtonMessage from "../ButtonMessage/buttonMessage";
 import BubbleMessage from "../BubbleMessage/bubbleMessage";
 import { useState } from "react";
 import ScrollableFeed from "react-scrollable-feed";
+import ButtonDelete from "../buttonsMessage/ButtonDelete/delete";
 
 export default function Chat({ setIsOpenList }) {
   const chatNewDate = dayjs().format("MM/DD/YYYY");
@@ -39,33 +39,25 @@ export default function Chat({ setIsOpenList }) {
             )}
 
             {message.type ? (
-              <Image
-                src={message?.src}
-                width={100}
-                height={100}
-                alt="uplo"
-                className="bot-avatar"
-              />
-            ) : (
-              <label className="user-message__wrapper">
-                <BubbleMessage
-                  isEditMode={isEditMode}
-                  setIsEditMode={setIsEditMode}
-                  id={message.id}
-                  sender={message.sender}
-                  text={message.text}
-                  time={message.time}
-                  src={message.content}
+              <div>
+                <Image
+                  src={message?.src}
+                  width={100}
+                  height={100}
+                  alt="image"
+                  className="message-image"
                 />
-                {message.sender === "user" && (
-                  <ButtonMessage
-                    isEditMode={isEditMode}
-                    setIsEditMode={setIsEditMode}
-                    id={message.id}
-                    value={message.text}
-                  />
-                )}
-              </label>
+                <ButtonDelete id={message.id} />
+              </div>
+            ) : (
+              <BubbleMessage
+                isEditMode={isEditMode}
+                setIsEditMode={setIsEditMode}
+                id={message.id}
+                sender={message.sender}
+                text={message.text}
+                time={message.time}
+              />
             )}
           </div>
         ))}

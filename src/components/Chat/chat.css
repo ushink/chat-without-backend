@@ -9,6 +9,7 @@
   margin: 0 auto;
   position: relative;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .chat__content-date {
@@ -30,6 +31,7 @@
   flex-direction: row-reverse;
   text-align: right;
   color: #ffffff;
+  padding: 0 12px;
 }
 
 .bot-message {
@@ -38,6 +40,7 @@
   align-items: flex-start;
 }
 
-.bot-avatar {
-  margin: 0 10px;
+.bot-avatar,
+.message-image {
+  margin: 0 10px 4px;
 }
