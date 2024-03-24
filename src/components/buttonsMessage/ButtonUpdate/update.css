@@ -1,0 +1,10 @@
+.user-message__buttons_save,
+.user-message__buttons_update {
+  margin-right: 8px;
+  color: #2c2c2e;
+}
+
+.user-message__buttons_save,
+.user-message__buttons_update:hover {
+  color: #007aff;
+}

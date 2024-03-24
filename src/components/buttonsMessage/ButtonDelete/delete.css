@@ -1,0 +1,7 @@
+.user-message__buttons_delete {
+  color: #2c2c2e;
+}
+
+.user-message__buttons_delete:hover {
+  color: #007aff;
+}
