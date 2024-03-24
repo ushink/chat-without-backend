@@ -16,20 +16,21 @@ export default function Footer() {
 
   const createMessage = useStore((state) => state.createMessage);
 
+  const botMessage = () => {
+    createMessage({
+      text: "Hello World!",
+      sender: "bot",
+    });
+  };
+
   const handleSend = () => {
     if (input.trim()) {
-      const message = {
+      createMessage({
         text: input,
         sender: "user",
-      };
-      createMessage(message);
+      });
 
-      const botMessage = {
-        text: "Hello World!",
-        sender: "bot",
-      };
-      createMessage(botMessage);
-
+      botMessage();
       setInput("");
     }
   };
@@ -56,13 +57,10 @@ export default function Footer() {
     }
 
     setTimeout(() => {
-      createMessage({
-        text: "Hello World!",
-        sender: "bot",
-      });
+      botMessage();
     }, 500);
   };
-
+  
   const handleUpload = () => {
     fileImage.current.click();
   };
@@ -101,7 +99,7 @@ export default function Footer() {
         <button className="footer__button-upload" onClick={handleUpload}>
           <PaperClipOutlined />
         </button>
-        
+
         <button
           className={
             isActiveButton
