@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Chat app
 
-## Getting Started
+Финальный результат этого проекта: многофункциональный чат. 
 
-First, run the development server:
+## Функциональность
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+* Отправка, редактирование и удаление сообщений.
+* На любое ваше сообщение отвечает бот.
+* Страница автоматически прокручивается вниз при добавлении новых сообщений (до использования скрола).
+* После презагрузки страницы история переписки сохраняется.
+* Есть возможность удалить всю историю переписки.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Технологии
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+* React + Next.JS - фреймворк
+* Zustand - стейт менеджер
+* Dayjs - работа с датами
+* ANTD ICONS - библиотека иконок
+* HTML
+* CSS
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Установка и запуск
 
-## Learn More
+1. Клонируйте репозиторий на свой компьютер: git clone <URL репозитория>
+2. Перейдите в корневую папку проекта: cd <название папки>
+3. Установите зависимости: npm install
+4. Запустите приложение: npm start
+5. Откройте http://localhost:3000 в браузере, чтобы увидеть ваше приложение.
 
-To learn more about Next.js, take a look at the following resources:
+## Скриншот
+![image](https://github.com/ushink/chat-without-backend/assets/131166403/d3798b29-1181-41dd-a953-c513535bfd54)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Деплой проекта на netlify
+https://loquacious-biscuit-175572.netlify.app/
