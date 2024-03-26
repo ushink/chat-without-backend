@@ -27,6 +27,7 @@ export default function Header({ isOpenList, setIsOpenList }) {
       >
         <button
           className="nav-burger__list_item"
+          disabled={!isOpenList}
           onClick={() => {
             deleteEverything();
             setIsOpenList(false);
